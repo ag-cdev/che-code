@@ -65,6 +65,8 @@ export const ViewHasSomeCollapsibleRootItemContext = new RawContextKey<boolean>(
 export const FilesExplorerFocusCondition = ContextKeyExpr.and(FoldersViewVisibleContext, FilesExplorerFocusedContext, ContextKeyExpr.not(InputFocusedContextKey));
 export const ExplorerFocusCondition = ContextKeyExpr.and(FoldersViewVisibleContext, ExplorerFocusedContext, ContextKeyExpr.not(InputFocusedContextKey));
 
+export const ExplorerFileDownloadEnabledContext = new RawContextKey<boolean>('explorerFileDownloadEnabled', false, { type: 'boolean', description: localize('explorerFileDownloadEnabled', "True when file download and upload are enabled in the explorer.") });
+
 /**
  * Text file editor id.
  */

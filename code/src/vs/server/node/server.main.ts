@@ -36,6 +36,14 @@ const errorReporter: ErrorReporter = {
 
 const args = parseArgs(process.argv.slice(2), serverOptions, errorReporter);
 
+// support both CHE_DISABLE_FILE_DOWNLOADS and legacy CS_DISABLE_FILE_DOWNLOADS
+// Default is DISABLED. Set to 0 to enable.
+if (process.env.CHE_DISABLE_FILE_DOWNLOADS?.match(/^(0|false)$/i)) {
+	args['enable-file-downloads'] = true;
+} else if (process.env.CS_DISABLE_FILE_DOWNLOADS?.match(/^(0|false)$/i)) {
+	args['enable-file-downloads'] = true;
+}
+
 const REMOTE_DATA_FOLDER = args['server-data-dir'] || process.env['VSCODE_AGENT_FOLDER'] || join(os.homedir(), product.serverDataFolderName || '.vscode-remote');
 const USER_DATA_PATH = join(REMOTE_DATA_FOLDER, 'data');
 const APP_SETTINGS_HOME = join(USER_DATA_PATH, 'User');

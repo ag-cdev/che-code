@@ -262,6 +262,12 @@ export interface IWorkbenchConstructionOptions {
 	readonly enableWorkspaceTrust?: boolean;
 
 	/**
+	 * Enable file downloads in the web.
+	 * When false, the download and upload actions are hidden.
+	 */
+	readonly enableFileDownloads?: boolean;
+
+	/**
 	 * Urls that will be opened externally that are allowed access
 	 * to the opener window. This is primarily used to allow
 	 * `window.close()` to be called from the newly opened window.

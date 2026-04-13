@@ -114,6 +114,9 @@ export class NativeWorkbenchEnvironmentService extends AbstractNativeEnvironment
 	get skipWelcome(): boolean { return !!this.args['skip-welcome']; }
 
 	@memoize
+	get disableFileDownloads(): boolean { return false; }
+
+	@memoize
 	get logExtensionHostCommunication(): boolean { return !!this.args.logExtensionHostCommunication; }
 
 	@memoize

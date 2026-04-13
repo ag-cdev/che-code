@@ -86,6 +86,7 @@ export const serverOptions: OptionDescriptions<Required<ServerParsedArgs>> = {
 
 	'use-host-proxy': { type: 'boolean' },
 	'without-browser-env-var': { type: 'boolean' },
+	'enable-file-downloads': { type: 'boolean' },
 
 	/* ----- server cli ----- */
 
@@ -214,6 +215,7 @@ export interface ServerParsedArgs {
 
 	'use-host-proxy'?: boolean;
 	'without-browser-env-var'?: boolean;
+	'enable-file-downloads'?: boolean;
 
 	/* ----- server cli ----- */
 	help: boolean;
