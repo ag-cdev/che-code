@@ -109,7 +109,7 @@ jobs:
             --progress=plain \
             --push \
             -f build/dockerfiles/assembly.Dockerfile \
-            -t quay.io/che-incubator/che-code:${{env.arch}}-${{env.tag_suffix}} .
+            -t quay.io/wafercode/che-code:${{env.arch}}-${{env.tag_suffix}} .
 
   publish:
     name: publish
@@ -140,30 +140,30 @@ jobs:
         run: | 
           SHORT_SHA1=$(git rev-parse --short=7 HEAD)
           if [[ ${{env.BRANCH_NAME}} == main ]]; then         
-            docker manifest create quay.io/che-incubator/che-code:next --amend quay.io/che-incubator/che-code:amd64-${{env.tag_suffix}} --amend quay.io/che-incubator/che-code:arm64-${{env.tag_suffix}}
-            docker manifest annotate quay.io/che-incubator/che-code:next quay.io/che-incubator/che-code:amd64-${{env.tag_suffix}} --os linux --arch amd64
-            docker manifest annotate quay.io/che-incubator/che-code:next quay.io/che-incubator/che-code:arm64-${{env.tag_suffix}} --os linux --arch arm64
-            docker manifest push quay.io/che-incubator/che-code:next          
+            docker manifest create quay.io/wafercode/che-code:next --amend quay.io/wafercode/che-code:amd64-${{env.tag_suffix}} --amend quay.io/wafercode/che-code:arm64-${{env.tag_suffix}}
+            docker manifest annotate quay.io/wafercode/che-code:next quay.io/wafercode/che-code:amd64-${{env.tag_suffix}} --os linux --arch amd64
+            docker manifest annotate quay.io/wafercode/che-code:next quay.io/wafercode/che-code:arm64-${{env.tag_suffix}} --os linux --arch arm64
+            docker manifest push quay.io/wafercode/che-code:next          
           
-            docker manifest create quay.io/che-incubator/che-code:insiders --amend quay.io/che-incubator/che-code:amd64-${{env.tag_suffix}} --amend quay.io/che-incubator/che-code:arm64-${{env.tag_suffix}}
-            docker manifest annotate quay.io/che-incubator/che-code:insiders quay.io/che-incubator/che-code:amd64-${{env.tag_suffix}} --os linux --arch amd64
-            docker manifest annotate quay.io/che-incubator/che-code:insiders quay.io/che-incubator/che-code:arm64-${{env.tag_suffix}} --os linux --arch arm64
-            docker manifest push quay.io/che-incubator/che-code:insiders          
+            docker manifest create quay.io/wafercode/che-code:insiders --amend quay.io/wafercode/che-code:amd64-${{env.tag_suffix}} --amend quay.io/wafercode/che-code:arm64-${{env.tag_suffix}}
+            docker manifest annotate quay.io/wafercode/che-code:insiders quay.io/wafercode/che-code:amd64-${{env.tag_suffix}} --os linux --arch amd64
+            docker manifest annotate quay.io/wafercode/che-code:insiders quay.io/wafercode/che-code:arm64-${{env.tag_suffix}} --os linux --arch arm64
+            docker manifest push quay.io/wafercode/che-code:insiders          
           
-            docker manifest create quay.io/che-incubator/che-code:insiders-${SHORT_SHA1} --amend quay.io/che-incubator/che-code:amd64-${{env.tag_suffix}} --amend quay.io/che-incubator/che-code:arm64-${{env.tag_suffix}}
-            docker manifest annotate quay.io/che-incubator/che-code:insiders-${SHORT_SHA1} quay.io/che-incubator/che-code:amd64-${{env.tag_suffix}} --os linux --arch amd64
-            docker manifest annotate quay.io/che-incubator/che-code:insiders-${SHORT_SHA1} quay.io/che-incubator/che-code:arm64-${{env.tag_suffix}} --os linux --arch arm64
-            docker manifest push quay.io/che-incubator/che-code:insiders-${SHORT_SHA1}          
+            docker manifest create quay.io/wafercode/che-code:insiders-${SHORT_SHA1} --amend quay.io/wafercode/che-code:amd64-${{env.tag_suffix}} --amend quay.io/wafercode/che-code:arm64-${{env.tag_suffix}}
+            docker manifest annotate quay.io/wafercode/che-code:insiders-${SHORT_SHA1} quay.io/wafercode/che-code:amd64-${{env.tag_suffix}} --os linux --arch amd64
+            docker manifest annotate quay.io/wafercode/che-code:insiders-${SHORT_SHA1} quay.io/wafercode/che-code:arm64-${{env.tag_suffix}} --os linux --arch arm64
+            docker manifest push quay.io/wafercode/che-code:insiders-${SHORT_SHA1}          
           elif [[ ${{env.BRANCH_NAME}} =~ ^7\.[0-9]+\.[0-9]+$ ]]; then         
-            docker manifest create quay.io/che-incubator/che-code:${{ env.BRANCH_NAME }} --amend quay.io/che-incubator/che-code:amd64-${{env.tag_suffix}} --amend quay.io/che-incubator/che-code:arm64-${{env.tag_suffix}}
-            docker manifest annotate quay.io/che-incubator/che-code:${{ env.BRANCH_NAME }} quay.io/che-incubator/che-code:amd64-${{env.tag_suffix}} --os linux --arch amd64
-            docker manifest annotate quay.io/che-incubator/che-code:${{ env.BRANCH_NAME }} quay.io/che-incubator/che-code:arm64-${{env.tag_suffix}} --os linux --arch arm64
-            docker manifest push quay.io/che-incubator/che-code:${{ env.BRANCH_NAME }}     
+            docker manifest create quay.io/wafercode/che-code:${{ env.BRANCH_NAME }} --amend quay.io/wafercode/che-code:amd64-${{env.tag_suffix}} --amend quay.io/wafercode/che-code:arm64-${{env.tag_suffix}}
+            docker manifest annotate quay.io/wafercode/che-code:${{ env.BRANCH_NAME }} quay.io/wafercode/che-code:amd64-${{env.tag_suffix}} --os linux --arch amd64
+            docker manifest annotate quay.io/wafercode/che-code:${{ env.BRANCH_NAME }} quay.io/wafercode/che-code:arm64-${{env.tag_suffix}} --os linux --arch arm64
+            docker manifest push quay.io/wafercode/che-code:${{ env.BRANCH_NAME }}     
           
-            docker manifest create quay.io/che-incubator/che-code:latest --amend quay.io/che-incubator/che-code:amd64-${{env.tag_suffix}} --amend quay.io/che-incubator/che-code:arm64-${{env.tag_suffix}}
-            docker manifest annotate quay.io/che-incubator/che-code:latest quay.io/che-incubator/che-code:amd64-${{env.tag_suffix}} --os linux --arch amd64
-            docker manifest annotate quay.io/che-incubator/che-code:latest quay.io/che-incubator/che-code:arm64-${{env.tag_suffix}} --os linux --arch arm64
-            docker manifest push quay.io/che-incubator/che-code:latest     
+            docker manifest create quay.io/wafercode/che-code:latest --amend quay.io/wafercode/che-code:amd64-${{env.tag_suffix}} --amend quay.io/wafercode/che-code:arm64-${{env.tag_suffix}}
+            docker manifest annotate quay.io/wafercode/che-code:latest quay.io/wafercode/che-code:amd64-${{env.tag_suffix}} --os linux --arch amd64
+            docker manifest annotate quay.io/wafercode/che-code:latest quay.io/wafercode/che-code:arm64-${{env.tag_suffix}} --os linux --arch arm64
+            docker manifest push quay.io/wafercode/che-code:latest     
           fi          
 
   release-finish:
@@ -197,6 +197,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           SHORT_SHA1=$(git rev-parse --short=7 HEAD)
-          docker buildx build --platform linux/amd64 -f build/dockerfiles/dev.Dockerfile --push -t quay.io/che-incubator/che-code-dev:insiders -t quay.io/che-incubator/che-code-dev:next -t quay.io/che-incubator/che-code-dev:insiders-${SHORT_SHA1} .
-          docker buildx build --platform linux/amd64 -f build/dockerfiles/assembly.sshd.Dockerfile --push -t quay.io/che-incubator/che-code-sshd:insiders -t quay.io/che-incubator/che-code-sshd:next -t quay.io/che-incubator/che-code-sshd:insiders-${SHORT_SHA1} .
+          docker buildx build --platform linux/amd64 -f build/dockerfiles/dev.Dockerfile --push -t quay.io/wafercode/che-code-dev:insiders -t quay.io/wafercode/che-code-dev:next -t quay.io/wafercode/che-code-dev:insiders-${SHORT_SHA1} .
+          docker buildx build --platform linux/amd64 -f build/dockerfiles/assembly.sshd.Dockerfile --push -t quay.io/wafercode/che-code-sshd:insiders -t quay.io/wafercode/che-code-sshd:next -t quay.io/wafercode/che-code-sshd:insiders-${SHORT_SHA1} .
 
